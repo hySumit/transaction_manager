@@ -154,9 +154,6 @@ const AddTransactionModal = ({
             </select>
           </div>
 
-          {/* Removed Currency Dropdown */}
-          {/* Currency is fixed to INR */}
-
           <div className="flex items-center gap-5">
             <label htmlFor="title" className="w-[20%] text-right">
               Title:
