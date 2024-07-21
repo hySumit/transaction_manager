@@ -10,5 +10,85 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 body{
-    background: #ffb46e7e;
+    background: #F4EEFF;
 }
+.salary-row{
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    background-color: #ffffff;
+}
+.sl_2:hover{
+    background-color: #dfdfdf85;
+}
+/* .sl_2{
+    border-radius: 15px;
+} */
+.total_row{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.295);
+    background-color: #e7e7e7;
+    border-radius: 10px;
+    
+}
+
+.category,.card{
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.418), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border:1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    font-size: 18px;
+    font-style: oblique;
+    font-family: 'poppins'sans-serif;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Input, Select, and Button Styles */
+  input, select, button {
+    font-size: 1rem;
+  }
+  
+  /* Flex Container Styles */
+  .flex {
+    display: flex;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .flex {
+      flex-direction: column;
+    }
+  
+    .btn {
+      font-size: 2rem;
+    }
+  
+    .total_row {
+      flex-direction: column;
+      align-items: start;
+    }
+  
+    .salary-row {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .flex {
+      flex-direction: column;
+    }
+  
+    .btn {
+      font-size: 1.5rem;
+    }
+  
+    .total_row, .salary-row {
+      font-size: 0.875rem;
+    }
+  }
+  

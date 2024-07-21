@@ -55,9 +55,9 @@ const TransactionTable = () => {
         (!filters.type || transaction.type === filters.type) &&
         (!filters.category || transaction.category === filters.category) &&
         (!filters.search || transaction.title.toLowerCase().includes(filters.search.toLowerCase())) &&
-        transaction.currency === filters.currency  // Filter by currency
+        transaction.currency === filters.currency
       )
-      .sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort transactions by date
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
   };
 
   const groupedTransactions = getFilteredTransactions().reduce((acc, transaction) => {
@@ -71,20 +71,20 @@ const TransactionTable = () => {
 
   return (
     <div className="p-4">
-      <div className="flex items-center justify-center space-x-4 mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
         <input 
           type="text" 
           placeholder="Search by Title" 
           name="search"
           value={filters.search}
           onChange={handleFilterChange}
-          className="border p-2 rounded-[15px] w-[30%]" 
+          className="border p-2 rounded-lg flex-1 min-w-[200px]" 
         />
         <select 
           name="type" 
           value={filters.type}
           onChange={handleFilterChange}
-          className="border p-2 rounded-[15px]"
+          className="border p-2 rounded-lg flex-1 min-w-[150px]"
         >
           <option value="">Type</option>
           <option value="Income">Income</option>
@@ -94,7 +94,7 @@ const TransactionTable = () => {
           name="category" 
           value={filters.category}
           onChange={handleFilterChange}
-          className="border p-2 rounded-[15px]"
+          className="border p-2 rounded-lg flex-1 min-w-[150px]"
         >
           <option value="">Category</option>
           <option value="Food">Food</option>
@@ -105,15 +105,12 @@ const TransactionTable = () => {
           <option value="Utilities">Utilities</option>
           <option value="Others">Others</option>
         </select>
-        {/* <select 
-          name="currency" 
-          value={filters.currency}
-          disabled  // Disable currency selection
-          className="border p-2 rounded-[15px]"
+        <button 
+          onClick={handleAddClick} 
+          className="text-3xl text-red-500"
         >
-          <option value="INR">INR</option>
-        </select> */}
-        <button onClick={handleAddClick} className="btn text-[50px] text-red-500 absolute right-[4.5em] btn-primary"><IoMdAddCircle /></button>
+          <IoMdAddCircle />
+        </button>
       </div>
 
       {Object.keys(groupedTransactions).map(date => {
@@ -127,20 +124,19 @@ const TransactionTable = () => {
 
         return (
           <div key={date} className="mb-4">
-            <div className="flex m-auto justify-between items-center w-[50%] bg-gray-100 p-4 border rounded-lg shadow-md">
+            <div className="flex flex-col sm:flex-row sm:justify-between items-center bg-white p-4 rounded-lg">
               <span className="font-bold text-lg">{date}</span>
-              
-              <div className="flex gap-3">
-                <p className='font-bold'>Total : </p>
-                <div className="text-green-500 font-bold text-lg">
+              <div className="flex flex-col sm:flex-row gap-2 mt-2 sm:mt-0">
+                <p className='font-bold'>Total:</p>
+                <div className="text-green-600 font-bold text-lg">
                   {currencySymbols['INR']} {totalIncome.toFixed(2)}
                 </div>
-                <div className="text-red-500 font-bold text-lg">
+                <div className="text-red-600 font-bold text-lg">
                   {currencySymbols['INR']} {totalExpense.toFixed(2)}
                 </div>
               </div>
             </div>
-            <div className="border rounded-lg w-[50%] bg-white m-auto shadow-md mt-2">
+            <div className="bg-white rounded-lg mt-2">
               {transactionsForDate.map(transaction => {
                 const titleHighlighted = transaction.title.replace(
                   new RegExp(filters.search, 'gi'), 
@@ -148,26 +144,26 @@ const TransactionTable = () => {
                 );
 
                 return (
-                  <div key={transaction.id} className="flex justify-between items-center border-b p-4">
+                  <div key={transaction.id} className="flex flex-col sm:flex-row justify-between items-center border-b p-4">
                     <div className="flex items-center space-x-2">
                       <span className={`inline-block px-2 py-1 rounded-full text-white text-sm ${transaction.type === 'Expense' ? 'bg-red-500' : 'bg-green-500'}`}>
                         {transaction.category}
                       </span>
                       <span className="text-lg font-bold" dangerouslySetInnerHTML={{ __html: titleHighlighted }}></span>
                     </div>
-                    <div className="flex items-center space-x-4">
+                    <div className="flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 mt-2 sm:mt-0">
                       <span className={`text-lg ${transaction.type === 'Expense' ? 'text-red-500 font-bold' : 'text-green-500 font-bold'}`}>
                         {currencySymbols['INR']} {transaction.amount}
                       </span>
                       <button 
                         onClick={() => handleEditClick(transaction)}
-                        className="text-blue-500 text-2xl hover:text-blue-700"
+                        className="text-gray-500 text-2xl hover:text-gray-700 mt-2 sm:mt-0"
                       >
                         <MdEdit />
                       </button>
                       <button 
                         onClick={() => handleDeleteClick(transaction.id)}
-                        className="text-red-500 text-2xl hover:text-red-700"
+                        className="text-[#424874] text-2xl hover:text-yellow-500 mt-2 sm:mt-0"
                       >
                         <MdOutlineDeleteOutline />
                       </button>
